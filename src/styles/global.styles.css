@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary-color: #7bafb1;
+  --secondary-color: #59c7cda4; /**/
+  --quaternary-color: #50888a;
+  --light-gray: #eeeeee;
+  --dark-gray: #c6c3c3;
+  --main-dark-color: #222831;
+  --secondary-dark-color: #2f3641;
+  --break-box-shadow-sm: 0 0 3px var(--quaternary-color);
+  --break-box-shadow-md: 0 0 6px var(--quaternary-color);
+  --break-box-shadow-lg: 0 0 11px var(--quaternary-color);
+  --dark-box-shadow-sm: 0 0 3px #0000003d;
+  --dark-box-shadow-md: 0 0 6px #0000003d;
+  --dark-box-shadow-lg: 0 0 11px #0000003d;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--main-dark-color);
+  color: var(--light-gray);
+}
+
+button {
+  background-color: transparent;
+}
+
+.min-h-svh {
+  min-height: 100svh;
+}
+
+.h-svh {
+  height: 100svh;
+}
+
+.p-cus-2 {
+  padding: 0.4rem;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.navbar-nav .nav-link.active[aria-current="page"] {
+  color: var(--light-gray) !important;
+  background-color: var(--secondary-color);
+  border-radius: 3px;
+
+  &:hover {
+    background-color: var(--primary-color);
+  }
+}
+
+#my-header {
+  transition: transform 0.4s;
+  transform: translate(0, 0);
+
+  &:is(.bg-not-transparent) {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    animation: fade-in-and-transform 0.5s ease 1;
+
+    nav {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 0 10px #76aaad4d inset;
+      backdrop-filter: blur(3.4px);
+      -webkit-backdrop-filter: blur(3.4px);
+      background: #76aaad4d;
+      border-bottom: 1.3px solid #76aaad3b;
+    }
+  }
+}
+
+#my-header:is(.bg-not-transparent) ~ .outlet-wrapper {
+  margin-top: 108px;
+}
+
+/* Animation-classes */
+.fade-in-out-anim {
+  animation: fade-in-out 0.7s infinite alternate-reverse linear;
+}
+/* Animation-classes */
+
+@keyframes fade-in-out {
+  from {
+    opacity: 0.6;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-and-transform {
+  from {
+    opacity: 0.5;
+    visibility: hidden;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+}
