@@ -1,12 +1,12 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-//styles
-import styles from "./NavBar.module.css";
-
 //icons
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
 import { useState } from "react";
+
+//styles
+import styles from "./NavBar.module.css";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);

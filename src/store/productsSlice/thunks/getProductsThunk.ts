@@ -1,6 +1,6 @@
 import TProductsRecords from "@customTypes/productsTypes/productsRecordsType";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import baseUrl from "@store/baseUrl";
+
 import axios from "axios";
 
 const getProducts = createAsyncThunk(
@@ -10,7 +10,7 @@ const getProducts = createAsyncThunk(
 
     try {
       const res = await axios.get<TProductsRecords[]>(
-        `${baseUrl}/products?cat_prefix=${cat_prefix}`
+        `/products?cat_prefix=${cat_prefix}`
       );
       return res.data;
     } catch (error) {

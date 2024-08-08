@@ -4,5 +4,6 @@ type TProductsRecords = {
   title: string;
   cat_prefix: string;
   img: string;
+  max: number;
 };
 export default TProductsRecords;
