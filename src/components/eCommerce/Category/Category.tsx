@@ -1,3 +1,4 @@
+import TCategoriesRecords from "@customTypes/categoriesTypes/categoriesRecordsType";
 import { Link } from "react-router-dom";
 
 //icons
@@ -5,12 +6,11 @@ import { GiClick } from "react-icons/gi";
 
 //styles
 import styles from "./styles.module.css";
-import TCategoriesRecords from "@customTypes/categoriesTypes/categoriesRecordsType";
-const { category_card, img_container, title: title_style, click_icon } = styles;
+const { img_container, title: title_style, click_icon } = styles;
 
 const Category = ({ title, img, prefix }: TCategoriesRecords) => {
   return (
-    <div className={`py-1 ${category_card}`}>
+    <div className={`py-1 d-flex justify-content-center`}>
       <Link to={`/products/${prefix}`}>
         <div className={`${img_container} `}>
           <img alt={title} src={img} />

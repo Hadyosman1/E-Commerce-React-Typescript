@@ -7,6 +7,7 @@ import { useState } from "react";
 
 //styles
 import styles from "./NavBar.module.css";
+const { nav_wrapper, nav } = styles;
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,21 +15,19 @@ const NavBar = () => {
   const handleIsNavOpen = () => setIsOpen((prev) => !prev);
 
   return (
-    <Navbar as={"nav"} expand="md" className={styles["nav-wrapper"]}>
+    <Navbar as={"nav"} expand="md" className={`${nav_wrapper}`}>
       <Container>
         <button
           onClick={handleIsNavOpen}
           aria-expanded={isOpen}
-          className={`d-flex justify-content-center align-items-center p-1 rounded border text-light pointer h4 m-0 d-block d-md-none  ${
+          className={`d-flex justify-content-center align-items-center p-1 rounded border text-light pointer h4 m-0 d-block d-md-none ${
             isOpen && "mb-3"
-          }`}
+          } `}
         >
           <HiMiniBars3CenterLeft aria-controls="basic-navbar-nav" />
         </button>
-        <Navbar.Collapse in={isOpen} id="basic-navbar-nav ">
-          <Nav
-            className={`${styles.nav}  align-items-start align-items-md-center`}
-          >
+        <Navbar.Collapse in={isOpen} id="basic-navbar-nav">
+          <Nav className={`${nav}  align-items-start align-items-md-center`}>
             <Nav.Link as={NavLink} to="/">
               Home
             </Nav.Link>
@@ -39,8 +38,9 @@ const NavBar = () => {
               About
             </Nav.Link>
           </Nav>
+
           <Nav
-            className={`ms-auto ${styles.nav}  align-items-start align-items-md-center`}
+            className={`ms-auto ${nav}  align-items-start align-items-md-center`}
           >
             <Nav.Link as={NavLink} to="/login">
               Login

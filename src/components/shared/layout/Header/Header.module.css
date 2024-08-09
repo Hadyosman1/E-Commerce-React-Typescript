@@ -3,31 +3,6 @@
   padding: 10px;
 }
 
-.cartCount {
-  border-radius: 50%;
-  color: var(--primary-color);
-  font-weight: 500;
-  background-color: var(--light-gray);
-  padding: 5px;
-  box-shadow: var(--dark-box-shadow-md);
-
-  span {
-    border-radius: inherit;
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 3px;
-    line-height: 0.9;
-    color: var(--light-gray);
-    font-weight: 500;
-    background-color: var(--primary-color);
-    transform: translate(30%, -30%);
-    font-size: 12px;
-    pointer-events: none;
-    border: 2px solid var(--light-gray);
-  }
-}
-
 .logo span {
   -webkit-text-stroke: 0.7px var(--light-gray);
   -webkit-text-fill-color: var(--quaternary-color);

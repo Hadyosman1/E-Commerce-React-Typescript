@@ -1,11 +1,13 @@
 import RootLayout from "@layouts/RootLayout";
 import About from "@pages/About/About";
+import Cart from "@pages/Cart/Cart";
 import Categories from "@pages/Categories/Categories";
 import ErrorPage from "@pages/ErrorPage/ErrorPage";
 import Home from "@pages/Home/Home";
 import Login from "@pages/Login/Login";
 import Products from "@pages/Products/Products";
 import Register from "@pages/Register/Register";
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -33,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },

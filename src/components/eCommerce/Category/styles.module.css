@@ -1,15 +1,11 @@
-.category_card {
-  display: flex;
-  flex-direction: column;
-}
-
 .img_container {
   overflow: hidden;
   position: relative;
   border-radius: 10px;
   transition: all 0.5s;
+  max-width: 250px;
   aspect-ratio: 1;
-  min-height: 220px;
+  min-height: 200px;
   background-color: var(--dark-gray);
 
   img {

@@ -22,7 +22,7 @@
   margin-top: -50px;
   margin-left: -50px;
   border-radius: 100px;
-  border: 20px solid #1e3f57;
+  border: 20px solid var(--primary-color);
   transform-style: perserve-3d;
   transform: scale(0) rotateX(60deg);
   animation: dot 3s cubic-bezier(0.67, 0.08, 0.46, 1.5) infinite;
@@ -59,7 +59,7 @@
 @keyframes dot {
   0% {
     opacity: 0;
-    border-color: #6bb2cd;
+    border-color: var(--secondary-color);
     transform: rotateX(60deg) rotateY(45deg) translateZ(-100px) scale(0.1);
   }
 
