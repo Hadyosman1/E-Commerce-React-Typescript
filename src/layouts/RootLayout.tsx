@@ -9,7 +9,7 @@ const RootLayout = () => {
   return (
     <main className={styles["root-layout-wrapper"]}>
       <Header />
-      <main className="py-5 outlet-wrapper">
+      <main className="py-4 outlet-wrapper">
         <Outlet />
       </main>
       <Footer />

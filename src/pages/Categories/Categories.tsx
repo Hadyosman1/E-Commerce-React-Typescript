@@ -1,12 +1,13 @@
 import Category from "@components/eCommerce/Category/Category";
-import Loading from "@components/shared/Loading/Loading";
+import IsLoadingOrError from "@components/shared/IsLoadingOrError/IsLoadingOrError";
+import PageTitle from "@components/shared/PageTitle/PageTitle";
 import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 import { getCategories } from "@store/categoriesSlice/categoriesSlice";
 import { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Col, Container, Row } from "react-bootstrap";
 
 const Categories = () => {
-  const { records, loading /*, error*/ } = useAppSelector(
+  const { records, loading, error } = useAppSelector(
     (state) => state.categories
   );
   const dispatch = useAppDispatch();
@@ -23,11 +24,19 @@ const Categories = () => {
 
   return (
     <Container>
-      {loading === "pending" ? (
-        <Loading />
-      ) : (
-        <Row className="justify-content-around">{categoriesList}</Row>
-      )}
+      <PageTitle className="mb-3">Categories</PageTitle>
+      <IsLoadingOrError error={error} loading={loading}>
+        {categoriesList.length ? (
+          <Row className="justify-content-around">{categoriesList}</Row>
+        ) : (
+          <Alert
+            variant="success"
+            className="mt-3 fw-semibold text-dark text-center "
+          >
+            There are no categories..!
+          </Alert>
+        )}
+      </IsLoadingOrError>
     </Container>
   );
 };

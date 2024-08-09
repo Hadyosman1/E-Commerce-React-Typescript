@@ -1,13 +1,12 @@
 import { Container } from "react-bootstrap";
-import NavBar from "./NavBar";
+import NavBar from "./HeaderCart/NavBar/NavBar";
 import { useEffect, useRef } from "react";
-
-// icons
-import { BsCart4 } from "react-icons/bs";
+import HeaderCart from "./HeaderCart/HeaderCart";
 
 //styles
 import styles from "./Header.module.css";
-const { header, logo, cartCount } = styles;
+import { Link } from "react-router-dom";
+const { header, logo } = styles;
 
 const handleScroll = (element: HTMLDivElement | null) => {
   if (element == null) return;
@@ -37,21 +36,16 @@ const Header = () => {
 
   return (
     <div id="my-header" ref={navWrapperRef}>
-      <header className={header}>
+      <header className={`${header}`}>
         <Container>
           <div className="d-flex align-items-center">
-            {/* Logo */}
             <h1 className={`m-0 h3 fw-bold ${logo}`}>
               <span>A</span>w<span>e</span>s<span>o</span>m<span>e</span>
             </h1>
-            {/* Logo */}
             <div className="flex-grow-1"></div>
-            {/* Cart */}
-            <div className={`position-relative ${cartCount}`}>
-              <BsCart4 className="fs-4 pointer " />
-              <span>12</span>
-            </div>
-            {/* Cart */}
+            <Link className="text-decoration-none" to="cart">
+              <HeaderCart />
+            </Link>
           </div>
         </Container>
       </header>
