@@ -41,6 +41,9 @@ const cartSlice = createSlice({
       state.items = {};
       state.productsFullInfo = [];
     },
+    ClearProductsFullInfoFromCart: (state) => {
+      state.productsFullInfo = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -73,5 +76,6 @@ export const {
   incrementItemQuantity,
   deleteFromCart,
   clearCart,
+  ClearProductsFullInfoFromCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

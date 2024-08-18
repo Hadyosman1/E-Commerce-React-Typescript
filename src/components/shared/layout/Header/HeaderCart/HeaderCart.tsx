@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useAppSelector } from "@hooks/reduxHooks";
 import { calcCartItemsCount } from "@store/cartSlice/cartSlice";
 
@@ -6,29 +7,30 @@ import { BsCart4 } from "react-icons/bs";
 
 //styles
 import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
-const { cartCount, pump_animate } = styles;
+const { cartCount } = styles;
 
 const HeaderCart = () => {
   const cartItemsCount = useAppSelector(calcCartItemsCount);
   const [isAnimate, setIsAnimate] = useState(false);
 
   useEffect(() => {
-    if (cartItemsCount <= 0) return;
-
     setIsAnimate(true);
-    const debounce = setTimeout(() => setIsAnimate(false), 500);
+    const timeOut = setTimeout(() => setIsAnimate(false), 500);
 
     return () => {
-      clearTimeout(debounce);
+      clearTimeout(timeOut);
     };
   }, [cartItemsCount]);
 
   return (
-    <div className="d-flex align-items-end gap-1 text-light ">
-      <div className={`position-relative ${cartCount}`}>
+    <div className="d-flex align-items-center gap-1 text-light ps-2 ">
+      <div className={`position-relative indicator-with-absolute-counter ${cartCount}`}>
         <BsCart4 className="fs-4 pointer " />
-        <span className={`${isAnimate && pump_animate}`}>{cartItemsCount}</span>
+        {cartItemsCount !== 0 && (
+          <span className={`${isAnimate && "pump_animate"}`}>
+            {cartItemsCount}
+          </span>
+        )}
       </div>
       <span>Cart</span>
     </div>

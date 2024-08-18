@@ -7,6 +7,7 @@ import Home from "@pages/Home/Home";
 import Login from "@pages/Login/Login";
 import Products from "@pages/Products/Products";
 import Register from "@pages/Register/Register";
+import WishList from "@pages/WishList/WishList";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "wish-list",
+        element: <WishList />,
       },
     ],
   },

@@ -6,6 +6,12 @@
   box-shadow: var(--break-box-shadow-md), var(--break-box-shadow-md) inset;
 }
 
+.product_title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .img_wrapper {
   position: relative;
 
@@ -15,7 +21,7 @@
     right: 10px;
     background-color: #99959572;
     border: 1px solid #eee;
-    color: crimson;
+    color: #ae0829;
     padding: 3px 6px;
     border-radius: 50%;
     font-size: 25px;

@@ -1,11 +1,14 @@
-import { Container } from "react-bootstrap";
-import NavBar from "./HeaderCart/NavBar/NavBar";
 import { useEffect, useRef } from "react";
+import NavBar from "./NavBar/NavBar";
 import HeaderCart from "./HeaderCart/HeaderCart";
+import WishList from "./WishListIndicator/WishListIndicator";
+import { Link } from "react-router-dom";
+
+import { Container } from "react-bootstrap";
 
 //styles
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
+
 const { header, logo } = styles;
 
 const handleScroll = (element: HTMLDivElement | null) => {
@@ -25,7 +28,6 @@ const Header = () => {
   const navWrapperRef = useRef<HTMLDivElement>(null);
 
   const onScroll = () => handleScroll(navWrapperRef.current);
-
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
 
@@ -38,14 +40,19 @@ const Header = () => {
     <div id="my-header" ref={navWrapperRef}>
       <header className={`${header}`}>
         <Container>
-          <div className="d-flex align-items-center">
-            <h1 className={`m-0 h3 fw-bold ${logo}`}>
+          <div className="d-flex align-items-center gap-1">
+            <h1 className={`m-0 h4 flex-shrink-1 fw-bold ${logo}`}>
               <span>A</span>w<span>e</span>s<span>o</span>m<span>e</span>
             </h1>
-            <div className="flex-grow-1"></div>
-            <Link className="text-decoration-none" to="cart">
-              <HeaderCart />
-            </Link>
+            <div className="flex-grow-1 d-flex justify-content-end  ">
+              <Link className="text-decoration-none " to="wish-list">
+                <WishList />
+              </Link>
+
+              <Link className="text-decoration-none" to="cart">
+                <HeaderCart />
+              </Link>
+            </div>
           </div>
         </Container>
       </header>
