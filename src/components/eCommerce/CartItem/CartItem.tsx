@@ -11,10 +11,10 @@ import {
 
 //icons
 import { BiMinus, BiPlus, BiTrash } from "react-icons/bi";
+import { CiWarning } from "react-icons/ci";
 
 //styles
 import styles from "./styles.module.css";
-import { CiWarning } from "react-icons/ci";
 
 const {
   cart_item,
@@ -35,10 +35,9 @@ const CartItem = ({
   quantity,
 }: TProductsRecords) => {
   const fixedPrice: number = +parseFloat(price).toFixed(2);
-  const isBtnDisabled = (quantity ?? 0) >= max;
+  const availableCountToAdd = max - (quantity ?? 0);
   const dispatch = useAppDispatch();
-
-  console.log("render");
+  console.log(availableCountToAdd);
   return (
     <li className={`${cart_item}`}>
       <div className={`${img_wrapper}`}>
@@ -64,12 +63,12 @@ const CartItem = ({
         className={`align-items-center align-items-lg-end ${quantity_controllers_wrapper}`}
       >
         <p className={max_quantity}>
-          {isBtnDisabled ? (
+          {!availableCountToAdd ? (
             <span className="text-warning">
               <CiWarning className=" fs-5 mb-1" /> You reached the limit
             </span>
           ) : (
-            `You can add maximum (${max}) items`
+            `You can add (${availableCountToAdd}) items`
           )}
         </p>
         <div className={`${controllers}`}>
@@ -85,7 +84,7 @@ const CartItem = ({
           <span>{quantity}</span>
           <Button
             onClick={() => dispatch(incrementItemQuantity(id))}
-            disabled={isBtnDisabled}
+            disabled={!availableCountToAdd}
             className="mt-auto "
             variant="success"
             size="sm"

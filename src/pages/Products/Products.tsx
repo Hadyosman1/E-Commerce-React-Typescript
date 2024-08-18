@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 const Products = () => {
   const dispatch = useAppDispatch();
   const { records, loading, error } = useAppSelector((state) => state.products);
+  const wishListItems = useAppSelector((state) => state.wishList.items);
 
   const cartItems = useAppSelector((state) => state.cart.items);
   const productsWithFullInfo = records.map((el) => ({
@@ -29,13 +30,13 @@ const Products = () => {
   }, [dispatch]);
 
   const productsList = productsWithFullInfo.map((record) => (
-    <Col className="my-3" key={record.id} xs={10} sm={8} md={6} lg={4} xl={3}>
-      <Product {...record} />
+    <Col key={record.id} className="my-3" xs={10} sm={8} md={6} lg={4} xl={3}>
+      <Product isInWishList={wishListItems.includes(record.id)} {...record} />
     </Col>
   ));
 
   return (
-    <Container>
+    <Container as="main">
       <PageTitle className={"mb-3"}>{cat_prefix} Products</PageTitle>
       <IsLoadingOrError error={error} loading={loading}>
         {productsWithFullInfo.length ? (

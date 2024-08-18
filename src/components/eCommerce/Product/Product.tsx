@@ -1,8 +1,15 @@
 import { memo, useEffect, useState } from "react";
-import TProductsRecords from "@customTypes/productsTypes/productsRecordsType";
 import { useAppDispatch } from "@hooks/reduxHooks";
 import { addToCart } from "@store/cartSlice/cartSlice";
+import {
+  addToWishList,
+  deleteFromWishList,
+  isProductLiked,
+} from "@store/wishList/WishListSlice";
+
 import { Spinner } from "react-bootstrap";
+
+import TProductsRecords from "@customTypes/productsTypes/productsRecordsType";
 
 //icons
 import { BsCartPlusFill } from "react-icons/bs";
@@ -12,12 +19,14 @@ import { TbHeart, TbHeartFilled } from "react-icons/tb";
 
 //styles
 import styles from "./styles.module.css";
+
 const {
   product_img,
   product_card,
   add_to_cart_btn,
   product_quantity,
   img_wrapper,
+  product_title,
 } = styles;
 
 const Product = ({
@@ -28,12 +37,14 @@ const Product = ({
   id,
   max,
   quantity,
-}: TProductsRecords) => {
+  isInWishList,
+}: TProductsRecords & { isInWishList: boolean }) => {
   const dispatch = useAppDispatch();
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const maxRemainingQuantity = max - (quantity ?? 0);
   const isMaxQuantityReached = Boolean(!maxRemainingQuantity);
-  const [Isliked, setIsLiked] = useState(false);
+
+  console.log("render");
 
   useEffect(() => {
     if (!isBtnDisabled) return;
@@ -48,10 +59,20 @@ const Product = ({
     setIsBtnDisabled(true);
   };
 
+  const handleLikeBtnClicked = () => {
+    if (isInWishList) {
+      dispatch(deleteFromWishList(id));
+    } else {
+      dispatch(addToWishList(id));
+    }
+  };
+
   return (
     <div className={`${product_card}`}>
       <div className="px-3 pt-4 pb-3">
-        <h2 className="h5">{title}</h2>
+        <h2 title={title} className={`h5 ${product_title}`}>
+          {title}
+        </h2>
         <h3 className="h6">Category : {cat_prefix}</h3>
         <h4 className="h6">price : {parseFloat(price).toFixed(2)} EGP</h4>
         <h5
@@ -71,8 +92,12 @@ const Product = ({
       </div>
       <div className={img_wrapper}>
         <img className={product_img} src={img} alt={title} />
-        <span className="pointer">
-          {Isliked ? <TbHeartFilled className="" /> : <TbHeart className="" />}
+        <span onClick={handleLikeBtnClicked} className="pointer">
+          {isInWishList ? (
+            <TbHeartFilled className="" />
+          ) : (
+            <TbHeart className="" />
+          )}
         </span>
       </div>
       <button

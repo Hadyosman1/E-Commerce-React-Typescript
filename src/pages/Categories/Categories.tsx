@@ -17,7 +17,7 @@ const Categories = () => {
   }, [dispatch, records.length]);
 
   const categoriesList = records.map((record) => (
-    <Col xs={12} sm={6} md={4} lg={3} xl={2} key={record.id} className="py-1">
+    <Col key={record.id} xs={12} sm={6} md={4} lg={3} xl={2} className="py-1">
       <Category {...record} />
     </Col>
   ));
