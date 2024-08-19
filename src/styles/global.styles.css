@@ -2,7 +2,7 @@
 
 :root {
   --primary-color: #6b9c9d;
-  --secondary-color: #6fc9cec8; /**/
+  --secondary-color: #6fc9cec8;
   --quaternary-color: #50888a;
   --light-gray: #eeeeee;
   --dark-gray: #c6c3c3;
@@ -112,6 +112,18 @@ button {
     font-size: 13px;
     padding-top: 5px;
   }
+}
+
+.wish-list-quantity span {
+  color: #fff;
+  background-color: #dc3545;
+  border: 1.5px solid #fff;
+}
+
+.cart-count span {
+  color: var(--light-gray);
+  background-color: var(--primary-color);
+  border: 2px solid var(--light-gray);
 }
 
 /* Animation-classes */

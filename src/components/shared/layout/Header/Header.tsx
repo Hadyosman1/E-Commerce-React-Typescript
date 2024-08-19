@@ -1,13 +1,19 @@
 import { useEffect, useRef } from "react";
 import NavBar from "./NavBar/NavBar";
-import HeaderCart from "./HeaderCart/HeaderCart";
-import WishList from "./WishListIndicator/WishListIndicator";
+import HeaderIndicatorWithCounter from "./HeaderIndicatorWithCounter/HeaderIndicatorWithCounter";
+
+import { calcCartItemsCount } from "@store/cartSlice/cartSlice";
+import { calcWishListQuantity } from "@store/wishList/WishListSlice";
+
 import { Link } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 
 //styles
 import styles from "./Header.module.css";
+
+//icons
+import { BsBagHeart, BsCart4 } from "react-icons/bs";
 
 const { header, logo } = styles;
 
@@ -45,12 +51,24 @@ const Header = () => {
               <span>A</span>w<span>e</span>s<span>o</span>m<span>e</span>
             </h1>
             <div className="flex-grow-1 d-flex justify-content-end  ">
-              <Link className="text-decoration-none " to="wish-list">
-                <WishList />
+              <Link
+                className="text-decoration-none border-2 border-end"
+                to="wish-list"
+              >
+                <HeaderIndicatorWithCounter
+                  styleClass="wish-list-quantity"
+                  quantityHandler={calcWishListQuantity}
+                  Icon={<BsBagHeart className="fs-4 pointer text-danger" />}
+                  title="WishList"
+                />
               </Link>
-
               <Link className="text-decoration-none" to="cart">
-                <HeaderCart />
+                <HeaderIndicatorWithCounter
+                  styleClass="cart-count"
+                  quantityHandler={calcCartItemsCount}
+                  Icon={<BsCart4 className="fs-4 pointer" />}
+                  title="Cart"
+                />
               </Link>
             </div>
           </div>

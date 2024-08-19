@@ -1,4 +1,4 @@
-import TLoading from "@customTypes/globalTypes/loadingType";
+import TLoading from "@/types/globalTypes/loadingType";
 import TProductsRecords from "./productsRecordsType";
 
 interface IProducts {

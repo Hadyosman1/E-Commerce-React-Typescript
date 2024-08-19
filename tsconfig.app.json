@@ -20,6 +20,7 @@
     /* Absolute path imports */
     "baseUrl": ".",
     "paths": {
+      "@*": ["src/*"],
       "@assets/*": ["src/assets/*"],
       "@components/*": ["src/components/*"],
       "@store/*": ["src/store/*"],
@@ -30,7 +31,8 @@
       "@utils/*": ["src/utils/*"],
       "@routes/*": ["src/routes/*"],
       "@styles/*": ["src/styles/*"],
-      "@customTypes/*": ["src/customTypes/*"]
+      "@types/*": ["src/types/*"],
+      "@types": ["src/types/index.ts"]
     },
 
     /* Linting */

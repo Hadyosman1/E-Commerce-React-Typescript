@@ -1,9 +1,10 @@
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 //icons
 import { HiMiniBars3CenterLeft } from "react-icons/hi2";
-import { useState } from "react";
 
 //styles
 import styles from "./NavBar.module.css";

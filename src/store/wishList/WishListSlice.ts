@@ -1,8 +1,8 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../index";
 import getWishListFullInfo from "./thunks/GetWishListFullInfoThunk";
-import TLoading from "@customTypes/globalTypes/loadingType";
-import TProductsRecords from "@customTypes/productsTypes/productsRecordsType";
+import { TLoading } from "@types";
+import { TProductsRecords } from "@types";
 
 type TWishListState = {
   items: number[];

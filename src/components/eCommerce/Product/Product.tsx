@@ -4,12 +4,11 @@ import { addToCart } from "@store/cartSlice/cartSlice";
 import {
   addToWishList,
   deleteFromWishList,
-  isProductLiked,
 } from "@store/wishList/WishListSlice";
 
 import { Spinner } from "react-bootstrap";
 
-import TProductsRecords from "@customTypes/productsTypes/productsRecordsType";
+import { TProductsRecords } from "@types";
 
 //icons
 import { BsCartPlusFill } from "react-icons/bs";
@@ -43,8 +42,6 @@ const Product = ({
   const [isBtnDisabled, setIsBtnDisabled] = useState(false);
   const maxRemainingQuantity = max - (quantity ?? 0);
   const isMaxQuantityReached = Boolean(!maxRemainingQuantity);
-
-  console.log("render");
 
   useEffect(() => {
     if (!isBtnDisabled) return;

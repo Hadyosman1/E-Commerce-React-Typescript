@@ -1,4 +1,4 @@
-import TLoading from "@customTypes/globalTypes/loadingType";
+import {TLoading} from "@types";
 import Loading from "../Loading/Loading";
 import { Alert } from "react-bootstrap";
 

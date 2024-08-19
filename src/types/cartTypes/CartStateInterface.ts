@@ -1,5 +1,5 @@
-import TLoading from "@customTypes/globalTypes/loadingType";
-import TProductsRecords from "@customTypes/productsTypes/productsRecordsType";
+import { TLoading } from "@types";
+import { TProductsRecords } from "@types";
 
 interface ICartState {
   items: { [id: string]: number };
