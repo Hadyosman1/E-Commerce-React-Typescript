@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import ICartState from "@customTypes/cartTypes/CartStateInterface";
+import { ICartState } from "@types";
 import { RootState } from "../index";
 import getCartItemsInfo from "./thunks/getCartItemsInfoThunk";
 

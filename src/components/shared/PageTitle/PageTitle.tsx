@@ -1,11 +1,11 @@
 const PageTitle = ({
-  children,
+  title,
   className,
 }: {
-  children: React.ReactNode;
+  title: string;
   className?: string | null;
 }) => {
-  return <h2 className={`h3 m-0 text-capitalize ${className}`}>{children}</h2>;
+  return <h2 className={`h3 m-0 text-capitalize ${className}`}>{title}</h2>;
 };
 
 export default PageTitle;

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import TProductsRecords from "@customTypes/productsTypes/productsRecordsType";
+import { TProductsRecords } from "@types";
 import { Button } from "react-bootstrap";
 import { useAppDispatch } from "@hooks/reduxHooks";
 
@@ -37,7 +37,7 @@ const CartItem = ({
   const fixedPrice: number = +parseFloat(price).toFixed(2);
   const availableCountToAdd = max - (quantity ?? 0);
   const dispatch = useAppDispatch();
-  console.log(availableCountToAdd);
+
   return (
     <li className={`${cart_item}`}>
       <div className={`${img_wrapper}`}>

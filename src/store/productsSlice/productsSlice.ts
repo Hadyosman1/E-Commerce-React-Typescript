@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import getProducts from "./thunks/getProductsThunk";
-import IProducts from "@customTypes/productsTypes/productsStateInterface";
+import { IProducts } from "@types";
 
 const initialState: IProducts = {
   records: [],

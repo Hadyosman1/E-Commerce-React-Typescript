@@ -1,33 +1,14 @@
 import Product from "@components/eCommerce/Product/Product";
 import IsLoadingOrError from "@components/shared/IsLoadingOrError/IsLoadingOrError";
 import PageTitle from "@components/shared/PageTitle/PageTitle";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { clearProducts, getProducts } from "@store/productsSlice/productsSlice";
-import { useEffect } from "react";
+import useProducts from "@hooks/useProducts";
+
 import { Alert, Col, Container, Row } from "react-bootstrap";
-import { useParams } from "react-router-dom";
 
 const Products = () => {
-  const dispatch = useAppDispatch();
-  const { records, loading, error } = useAppSelector((state) => state.products);
-  const wishListItems = useAppSelector((state) => state.wishList.items);
-
-  const cartItems = useAppSelector((state) => state.cart.items);
-  const productsWithFullInfo = records.map((el) => ({
-    ...el,
-    quantity: cartItems[el.id] || 0,
-  }));
-
-  const { cat_prefix } = useParams();
-
-  useEffect(() => {
-    if (cat_prefix && typeof cat_prefix === "string")
-      dispatch(getProducts(cat_prefix));
-  }, [dispatch, cat_prefix]);
-
-  useEffect(() => {
-    dispatch(clearProducts());
-  }, [dispatch]);
+  console.log("products");
+  const { productsWithFullInfo, wishListItems, loading, error, cat_prefix } =
+    useProducts();
 
   const productsList = productsWithFullInfo.map((record) => (
     <Col key={record.id} className="my-3" xs={10} sm={8} md={6} lg={4} xl={3}>
@@ -37,9 +18,9 @@ const Products = () => {
 
   return (
     <Container as="main">
-      <PageTitle className={"mb-3"}>{cat_prefix} Products</PageTitle>
+      <PageTitle title={`${cat_prefix} Products`} className={"mb-3"} />
       <IsLoadingOrError error={error} loading={loading}>
-        {productsWithFullInfo.length ? (
+        {productsList.length ? (
           <Row className="justify-content-center">{productsList}</Row>
         ) : (
           <Alert

@@ -1,4 +1,4 @@
-import TCategoriesRecords from "@customTypes/categoriesTypes/categoriesRecordsType";
+import { TCategoriesRecords } from "@types";
 import { Link } from "react-router-dom";
 
 //icons

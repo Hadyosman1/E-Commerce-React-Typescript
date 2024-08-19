@@ -1,20 +1,12 @@
 import Category from "@components/eCommerce/Category/Category";
 import IsLoadingOrError from "@components/shared/IsLoadingOrError/IsLoadingOrError";
 import PageTitle from "@components/shared/PageTitle/PageTitle";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import { getCategories } from "@store/categoriesSlice/categoriesSlice";
-import { useEffect } from "react";
+import useCategories from "@hooks/useCategories";
+
 import { Alert, Col, Container, Row } from "react-bootstrap";
 
 const Categories = () => {
-  const { records, loading, error } = useAppSelector(
-    (state) => state.categories
-  );
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (!records.length) dispatch(getCategories());
-  }, [dispatch, records.length]);
+  const { loading, error, records } = useCategories();
 
   const categoriesList = records.map((record) => (
     <Col key={record.id} xs={12} sm={6} md={4} lg={3} xl={2} className="py-1">
@@ -24,7 +16,7 @@ const Categories = () => {
 
   return (
     <Container>
-      <PageTitle className="mb-3">Categories</PageTitle>
+      <PageTitle title="Categories" className="mb-3" />
       <IsLoadingOrError error={error} loading={loading}>
         {categoriesList.length ? (
           <Row className="justify-content-around">{categoriesList}</Row>

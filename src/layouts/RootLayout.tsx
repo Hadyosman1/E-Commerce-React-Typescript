@@ -4,16 +4,17 @@ import { Outlet } from "react-router-dom";
 
 //styles
 import styles from "./styles.module.css";
+const { root_layout_wrapper } = styles;
 
 const RootLayout = () => {
   return (
-    <main className={styles["root-layout-wrapper"]}>
+    <div className={root_layout_wrapper}>
       <Header />
       <main className="py-4 outlet-wrapper">
         <Outlet />
       </main>
       <Footer />
-    </main>
+    </div>
   );
 };
 

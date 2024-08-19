@@ -1,4 +1,4 @@
-.root-layout-wrapper {
+.root_layout_wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100svh;

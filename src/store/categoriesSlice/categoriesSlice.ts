@@ -1,4 +1,4 @@
-import ICategories from "@customTypes/categoriesTypes/categoriesStateInterface";
+import { ICategories } from "@types";
 import { createSlice } from "@reduxjs/toolkit";
 import getCategories from "./thunks/getCategoriesThunk";
 

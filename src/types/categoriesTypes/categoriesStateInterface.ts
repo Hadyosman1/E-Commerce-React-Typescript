@@ -1,5 +1,5 @@
 import TCategoriesRecords from "./categoriesRecordsType";
-import TLoading from "@customTypes/globalTypes/loadingType";
+import TLoading from "../globalTypes/loadingType";
 
 interface ICategories {
   records: TCategoriesRecords[];
