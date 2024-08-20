@@ -1,4 +1,5 @@
 import Category from "@components/eCommerce/Category/Category";
+import CategoriesSkeleton from "@components/feedback/skeletons/CategoriesSkeleton";
 import IsLoadingOrError from "@components/shared/IsLoadingOrError/IsLoadingOrError";
 import PageTitle from "@components/shared/PageTitle/PageTitle";
 import useCategories from "@hooks/useCategories";
@@ -17,7 +18,11 @@ const Categories = () => {
   return (
     <Container>
       <PageTitle title="Categories" className="mb-3" />
-      <IsLoadingOrError error={error} loading={loading}>
+      <IsLoadingOrError
+        error={error}
+        loading={loading}
+        loadingIndicator={<CategoriesSkeleton />}
+      >
         {categoriesList.length ? (
           <Row className="justify-content-around">{categoriesList}</Row>
         ) : (

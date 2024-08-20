@@ -2,6 +2,9 @@ import CartItem from "@components/eCommerce/CartItem/CartItem";
 import PageTitle from "@components/shared/PageTitle/PageTitle";
 import IsLoadingOrError from "@components/shared/IsLoadingOrError/IsLoadingOrError";
 import useCart from "@hooks/useCart";
+import CartItemsSkeleton from "@components/feedback/skeletons/CartItemsSkeleton";
+import Lottie from "lottie-react";
+import emptyLottie from "@assets/lottie-files/empty-cart.json";
 
 import { clearCart } from "@store/cartSlice/cartSlice";
 
@@ -20,7 +23,11 @@ const Cart = () => {
 
   return (
     <Container as={"main"}>
-      <IsLoadingOrError error={error} loading={loading}>
+      <IsLoadingOrError
+        error={error}
+        loading={loading}
+        loadingIndicator={<CartItemsSkeleton />}
+      >
         {mergedProductsWithQuantity.length ? (
           <>
             <div className="d-flex align-items-center mb-4">
@@ -46,12 +53,20 @@ const Cart = () => {
             </p>
           </>
         ) : (
-          <Alert
-            variant="success"
-            className="mt-3 fw-semibold text-dark text-center "
-          >
-            Your cart is empty..! <BiSmile className="fs-4 mb-1" />
-          </Alert>
+          <>
+            <div className="d-flex justify-content-center align-items-center">
+              <Lottie
+                animationData={emptyLottie}
+                style={{ width: "clamp(280px,500px,100%)" }}
+              />
+            </div>
+            <Alert
+              variant="success"
+              className="mt-3 fw-semibold text-dark text-center "
+            >
+              Your cart is empty..! <BiSmile className="fs-4 mb-1" />
+            </Alert>
+          </>
         )}
       </IsLoadingOrError>
     </Container>

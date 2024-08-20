@@ -1,13 +1,14 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Loading from "@components/shared/Loading/Loading";
+import Loading from "@components/feedback/Loading/Loading";
+import PageSuspenseFallback from "@components/feedback/PageSuspenseFallback/PageSuspenseFallback";
+import ErrorPage from "@pages/ErrorPage/ErrorPage";
 
 const RootLayout = lazy(() => import("@layouts/RootLayout"));
 
 const About = lazy(() => import("@pages/About/About"));
 const Cart = lazy(() => import("@pages/Cart/Cart"));
 const Categories = lazy(() => import("@pages/Categories/Categories"));
-const ErrorPage = lazy(() => import("@pages/ErrorPage/ErrorPage"));
 const Home = lazy(() => import("@pages/Home/Home"));
 const Login = lazy(() => import("@pages/Login/Login"));
 const Products = lazy(() => import("@pages/Products/Products"));
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<PageSuspenseFallback />}>
         <RootLayout />
       </Suspense>
     ),
