@@ -5,7 +5,6 @@ import PageSuspenseFallback from "@components/feedback/PageSuspenseFallback/Page
 import ErrorPage from "@pages/ErrorPage/ErrorPage";
 
 const RootLayout = lazy(() => import("@layouts/RootLayout"));
-
 const About = lazy(() => import("@pages/About/About"));
 const Cart = lazy(() => import("@pages/Cart/Cart"));
 const Categories = lazy(() => import("@pages/Categories/Categories"));
@@ -77,28 +76,26 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "login",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: "register",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <Register />
+          </Suspense>
+        ),
+      },
     ],
-  },
-  {
-    path: "login",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Login />
-      </Suspense>
-    ),
-  },
-  {
-    path: "register",
-    element: (
-      <Suspense fallback={<Loading />}>
-        <Register />
-      </Suspense>
-    ),
   },
 ]);
 
-const AppRouter = () => {
-  return <RouterProvider router={router} />;
-};
+const AppRouter = () => <RouterProvider router={router} />;
 
 export default AppRouter;

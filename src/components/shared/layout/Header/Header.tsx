@@ -9,12 +9,11 @@ import { Link } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 
-//styles
-import styles from "./Header.module.css";
-
 //icons
 import { BsBagHeart, BsCart4 } from "react-icons/bs";
 
+//styles
+import styles from "./Header.module.css";
 const { header, logo } = styles;
 
 const handleScroll = (element: HTMLDivElement | null) => {
@@ -43,8 +42,8 @@ const Header = () => {
   }, []);
 
   return (
-    <div id="my-header" ref={navWrapperRef}>
-      <header className={`${header}`}>
+    <header id="my-header" ref={navWrapperRef}>
+      <div className={`${header}`}>
         <Container>
           <div className="d-flex align-items-center gap-1">
             <h1 className={`m-0 h4 flex-shrink-1 fw-bold ${logo}`}>
@@ -73,9 +72,9 @@ const Header = () => {
             </div>
           </div>
         </Container>
-      </header>
+      </div>
       <NavBar />
-    </div>
+    </header>
   );
 };
 
