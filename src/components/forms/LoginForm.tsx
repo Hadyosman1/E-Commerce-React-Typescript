@@ -1,5 +1,6 @@
 import FormInput from "./FormInput";
-import useCheckIsEmailAvailable from "@hooks/useCheckIsEmailAvailable";
+
+import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -7,93 +8,84 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginScheme, LoginType } from "@validations/loginScheme";
 
-import { Button, Form } from "react-bootstrap";
-
-// icons
-// import { TbMoodHappy } from "react-icons/tb";
+import { Alert, Button, Form, Spinner } from "react-bootstrap";
+import loginThunk from "@store/auth/thunks/loginThunk";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { resetLoadingAndError } from "@store/auth/authSlice";
 
 const LoginForm = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { loading, error } = useAppSelector((state) => state.auth);
+  const [searchParam, setSearchParam] = useSearchParams();
+
   const {
     register,
     handleSubmit,
     getFieldState,
-    trigger,
+
     formState: { errors },
   } = useForm<LoginType>({
     mode: "onBlur",
     resolver: zodResolver(loginScheme),
   });
 
-  const {
-    checkIsEmailAvailableHandler,
-    checkIsEmailAvailableStatus,
-    prevEmail,
-    setPrevEmail,
-    setCheckIsEmailAvailableStatus,
-  } = useCheckIsEmailAvailable();
-
   const submitForm: SubmitHandler<LoginType> = (data) => {
-    console.log(data);
+    if (searchParam.has("message")) setSearchParam("");
+    dispatch(loginThunk(data))
+      .unwrap()
+      .then(() => navigate("/"));
   };
 
-  const onEmailInputBlur = async (e: React.FocusEvent<HTMLInputElement>) => {
-    await trigger("email");
-    const value = e.target.value;
-    const { isDirty, invalid } = getFieldState("email");
-
-    if (isDirty && !invalid && prevEmail?.trim() !== value.trim()) {
-      checkIsEmailAvailableHandler(value);
-    }
-
-    if (isDirty && invalid && value.length > 1) {
-      setPrevEmail(undefined);
-      setCheckIsEmailAvailableStatus("idle");
-    }
-  };
+  useEffect(() => {
+    return () => {
+      dispatch(resetLoadingAndError());
+    };
+  }, [dispatch]);
 
   return (
-    <Form
-      onSubmit={handleSubmit(submitForm)}
-      className="custom-primary-shadow-lg px-3 py-4 rounded-2 bg-custom-secondary-dark"
-    >
-      <FormInput
-        register={register}
-        onBlur={onEmailInputBlur}
-        label="Email address"
-        name="email"
-        placeholder="example@example.com"
-        error={
-          errors.email?.message
-            ? errors.email?.message
-            : checkIsEmailAvailableStatus === "notAvailable"
-            ? "This email has been taken"
-            : ""
-        }
-        isValid={checkIsEmailAvailableStatus === "available"}
-        checkingMessage={
-          checkIsEmailAvailableStatus === "checking" ? "Checking" : ""
-        }
-        disabled={checkIsEmailAvailableStatus === "checking"}
-      />
-
-      <FormInput
-        register={register}
-        error={errors.password?.message}
-        label="Password"
-        name="password"
-        placeholder="Password"
-        type="password"
-        isValid={!errors.password?.message && getFieldState("password").isDirty}
-      />
-
-      <Button
-        disabled={checkIsEmailAvailableStatus === "checking"}
-        className="btn btn-custom-primary w-100 mt-3"
-        type="submit"
+    <>
+      {error && (
+        <Alert dismissible={true} variant="danger" className="mt-3">
+          {error}
+        </Alert>
+      )}
+      <Form
+        onSubmit={handleSubmit(submitForm)}
+        className="custom-primary-shadow-lg px-3 py-4 rounded-2 bg-custom-secondary-dark"
       >
-        Submit
-      </Button>
-    </Form>
+        <FormInput
+          register={register}
+          label="Email address"
+          name="email"
+          placeholder="example@example.com"
+          error={errors.email?.message}
+          isValid={!errors.email?.message && getFieldState("email").isDirty}
+        />
+
+        <FormInput
+          register={register}
+          error={errors.password?.message}
+          label="Password"
+          name="password"
+          placeholder="Password"
+          type="password"
+          isValid={
+            !errors.password?.message && getFieldState("password").isDirty
+          }
+        />
+
+        <Button
+          disabled={loading === "pending"}
+          className="btn btn-custom-primary w-100 mt-3"
+          type="submit"
+        >
+          {loading === "pending" && <Spinner size="sm" animation="border" />}{" "}
+          Submit
+        </Button>
+      </Form>
+    </>
   );
 };
 

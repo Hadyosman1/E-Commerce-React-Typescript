@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Loading from "@components/feedback/Loading/Loading";
 import PageSuspenseFallback from "@components/feedback/PageSuspenseFallback/PageSuspenseFallback";
 import ErrorPage from "@pages/ErrorPage/ErrorPage";
+import ProtectWrapper from "@components/auth/ProtectWrapper";
 
 const RootLayout = lazy(() => import("@layouts/RootLayout"));
 const About = lazy(() => import("@pages/About/About"));
@@ -13,6 +14,7 @@ const Login = lazy(() => import("@pages/Login/Login"));
 const Products = lazy(() => import("@pages/Products/Products"));
 const Register = lazy(() => import("@pages/Register/Register"));
 const WishList = lazy(() => import("@pages/WishList/WishList"));
+const Profile = lazy(() => import("@pages/Profile/Profile"));
 
 const router = createBrowserRouter([
   {
@@ -90,6 +92,16 @@ const router = createBrowserRouter([
           <Suspense fallback={<Loading />}>
             <Register />
           </Suspense>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <ProtectWrapper>
+            <Suspense fallback={<Loading />}>
+              <Profile />
+            </Suspense>
+          </ProtectWrapper>
         ),
       },
     ],
