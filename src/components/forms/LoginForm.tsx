@@ -1,48 +1,18 @@
 import FormInput from "./FormInput";
 
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-
-import { useForm, SubmitHandler } from "react-hook-form";
-
-// zod
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginScheme, LoginType } from "@validations/loginScheme";
-
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
-import loginThunk from "@store/auth/thunks/loginThunk";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
-import { resetLoadingAndError } from "@store/auth/authSlice";
+import useLogin from "@hooks/useLogin";
 
 const LoginForm = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const { loading, error } = useAppSelector((state) => state.auth);
-  const [searchParam, setSearchParam] = useSearchParams();
-
   const {
+    loading,
+    error,
+    submitForm,
     register,
     handleSubmit,
     getFieldState,
-
-    formState: { errors },
-  } = useForm<LoginType>({
-    mode: "onBlur",
-    resolver: zodResolver(loginScheme),
-  });
-
-  const submitForm: SubmitHandler<LoginType> = (data) => {
-    if (searchParam.has("message")) setSearchParam("");
-    dispatch(loginThunk(data))
-      .unwrap()
-      .then(() => navigate("/"));
-  };
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetLoadingAndError());
-    };
-  }, [dispatch]);
+    errors,
+  } = useLogin();
 
   return (
     <>

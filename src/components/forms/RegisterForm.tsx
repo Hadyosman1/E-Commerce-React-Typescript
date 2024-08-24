@@ -1,68 +1,20 @@
-import { useForm, SubmitHandler } from "react-hook-form";
+import useRegister from "@hooks/useRegister";
 import FormInput from "./FormInput";
-import useCheckIsEmailAvailable from "@hooks/useCheckIsEmailAvailable";
-
-// zod
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerScheme, RegisterType } from "@validations/registerScheme";
 
 import { Alert, Button, Form, Spinner } from "react-bootstrap";
-import { useAppDispatch, useAppSelector } from "@hooks/reduxHooks";
-import registerThunk from "@store/auth/thunks/registerThunk";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { resetLoadingAndError } from "@store/auth/authSlice";
 
 const RegisterForm = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { loading, error } = useAppSelector((state) => state.auth);
-
   const {
+    loading,
+    error,
     register,
     handleSubmit,
-    getFieldState,
-    trigger,
-    formState: { errors },
-  } = useForm<RegisterType>({
-    mode: "onBlur",
-    resolver: zodResolver(registerScheme),
-  });
-
-  const {
-    checkIsEmailAvailableHandler,
+    errors,
+    onBlurHandler,
+    submitForm,
     checkIsEmailAvailableStatus,
-    prevEmail,
-    setCheckIsEmailAvailableStatus,
-    setPrevEmail,
-  } = useCheckIsEmailAvailable();
-
-  const submitForm: SubmitHandler<RegisterType> = (data) => {
-    const { email, firstName, lastName, password } = data;
-    dispatch(registerThunk({ email, firstName, lastName, password }))
-      .unwrap()
-      .then(() => navigate("/login?message=account_created"));
-  };
-
-  const onBlurHandler = async (e: React.FocusEvent<HTMLInputElement>) => {
-    await trigger("email");
-    const value = e.target.value;
-    const { isDirty, invalid } = getFieldState("email");
-
-    if (isDirty && !invalid && prevEmail?.trim() !== value.trim()) {
-      checkIsEmailAvailableHandler(value);
-    }
-    if (isDirty && invalid && prevEmail) {
-      setPrevEmail(undefined);
-      setCheckIsEmailAvailableStatus("idle");
-    }
-  };
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetLoadingAndError());
-    };
-  }, [dispatch]);
+    getFieldState,
+  } = useRegister();
 
   return (
     <>
