@@ -30,13 +30,13 @@
     }
 
     &:hover::before {
-      background: rgba(186, 191, 191, 0.623);
+      background: var(--light-gray);
       z-index: -1;
       border: 2px solid #f1f1f1d2;
     }
 
     &:hover {
-      color: var(--light-gray) !important;
+      color: var(--primary-color) !important;
     }
   }
 }

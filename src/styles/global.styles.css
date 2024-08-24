@@ -24,19 +24,26 @@ body {
 
 /* backgrounds */
 .bg-custom-primary {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
 }
 
 .bg-custom-secondary {
-  background-color: var(--secondary-color);
+  background-color: var(--secondary-color) !important;
 }
 
 .bg-custom-primary-dark {
-  background-color: var(--main-dark-color);
+  background-color: var(--main-dark-color) !important;
 }
 
 .bg-custom-secondary-dark {
-  background-color: var(--secondary-dark-color);
+  background-color: var(--secondary-dark-color) !important;
+}
+.bg-dark-gray {
+  background-color: var(--dark-gray);
+}
+
+.bg-light-gray {
+  background-color: var(--light-gray);
 }
 /* backgrounds */
 
@@ -69,6 +76,9 @@ input:not(.is-invalid, .is-valid):focus {
 /* inputs */
 
 /* shadows */
+.custom-primary-shadow-sm {
+  box-shadow: var(--break-box-shadow-sm);
+}
 .custom-primary-shadow-md {
   box-shadow: var(--break-box-shadow-md);
 }

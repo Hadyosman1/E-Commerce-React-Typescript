@@ -11,6 +11,7 @@ import { HiOutlineClipboardDocumentList } from "react-icons/hi2";
 
 //styles
 import styles from "./NavBar.module.css";
+import AuthLinks from "../AuthLinks/AuthLinks";
 const { nav_wrapper, nav } = styles;
 
 const NavBar = () => {
@@ -31,7 +32,7 @@ const NavBar = () => {
           <HiMiniBars3CenterLeft aria-controls="basic-navbar-nav" />
         </button>
         <Navbar.Collapse in={isOpen} id="basic-navbar-nav">
-          <Nav className={`${nav}  align-items-start align-items-md-center`}>
+          <Nav className={`${nav} align-items-start align-items-md-center   `}>
             <Nav.Link as={NavLink} to="/">
               <IoHomeOutline className="mb-1" /> Home
             </Nav.Link>
@@ -46,15 +47,9 @@ const NavBar = () => {
           </Nav>
 
           <Nav
-            className={`ms-auto ${nav}  align-items-start align-items-md-center`}
+            className={`ms-auto ${nav} align-items-start align-items-md-center `}
           >
-            <Nav.Link as={NavLink} to="/register">
-              Register
-            </Nav.Link>
-
-            <Nav.Link as={NavLink} to="/login">
-              Login
-            </Nav.Link>
+            <AuthLinks />
           </Nav>
         </Navbar.Collapse>
       </Container>
