@@ -144,7 +144,7 @@ input:not(.is-invalid, .is-valid):focus {
 
 @media (min-width: 992px) {
   #my-header ~ .outlet-wrapper {
-    margin-top: 108px;
+    margin-top: 98px;
   }
 }
 

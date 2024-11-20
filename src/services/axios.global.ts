@@ -1,3 +1,3 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://673dd7de0118dbfe86090124.mockapi.io/api";
