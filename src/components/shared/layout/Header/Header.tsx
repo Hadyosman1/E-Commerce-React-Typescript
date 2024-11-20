@@ -46,10 +46,13 @@ const Header = () => {
       <div className={`${header}`}>
         <Container>
           <div className="d-flex align-items-center gap-1">
-            <h1 className={`m-0 h4 flex-shrink-1 fw-bold ${logo}`}>
-              <span>A</span>w<span>e</span>s<span>o</span>m<span>e</span>
-            </h1>
-            <div className="flex-grow-1 d-flex justify-content-end  ">
+            <Link className="text-decoration-none" to="/">
+              <h1 className={`m-0 h4 flex-shrink-1 fw-bold text-light ${logo}`}>
+                <span>A</span>w<span>e</span>s<span>o</span>m<span>e</span>
+              </h1>
+            </Link>
+
+            <div className="flex-grow-1 d-flex justify-content-end ">
               <Link
                 className="text-decoration-none border-2 border-end"
                 to="wish-list"

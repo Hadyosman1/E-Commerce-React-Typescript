@@ -26,7 +26,7 @@ const Products = () => {
         loading={loading}
         loadingIndicator={<ProductsSkeleton />}
       >
-        {productsList.length ? (
+        {productsList.length > 0 ? (
           <Row className="justify-content-center">{productsList}</Row>
         ) : (
           <>

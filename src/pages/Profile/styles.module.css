@@ -1,0 +1,7 @@
+.profile_card {
+  background: var(--secondary-dark-color);
+  border-radius: 10px/10px;
+  overflow: hidden;
+  border: 1px solid var(--quaternary-color);
+  box-shadow: var(--break-box-shadow-md), var(--break-box-shadow-md) inset;
+}

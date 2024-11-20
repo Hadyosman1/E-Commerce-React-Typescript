@@ -8,8 +8,8 @@ const useProducts = () => {
   const dispatch = useAppDispatch();
   const { records, loading, error } = useAppSelector((state) => state.products);
   const wishListItems = useAppSelector((state) => state.wishList.items);
-
   const cartItems = useAppSelector((state) => state.cart.items);
+
   const productsWithFullInfo: TProductsRecords[] = records.map((el) => ({
     ...el,
     quantity: cartItems[el.id] || 0,
