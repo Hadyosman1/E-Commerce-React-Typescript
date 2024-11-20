@@ -4,16 +4,19 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite\" \"npm run start-json-server\"",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "start": "concurrently \"vite preview\" \"npm run start-json-server\"",
+    "start-json-server": "json-server-auth db.json -w --port 5000"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0",
     "lottie-react": "^2.4.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.4",
@@ -32,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^9.1.0",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",

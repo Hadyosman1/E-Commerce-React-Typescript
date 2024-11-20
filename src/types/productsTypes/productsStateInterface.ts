@@ -3,6 +3,7 @@ import TProductsRecords from "./productsRecordsType";
 
 interface IProducts {
   records: TProductsRecords[];
+  allRecords: TProductsRecords[];
   loading: TLoading;
   error: null | string;
 }

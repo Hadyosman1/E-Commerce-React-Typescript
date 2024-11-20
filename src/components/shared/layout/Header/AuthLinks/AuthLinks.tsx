@@ -45,7 +45,7 @@ const AuthLinks = () => {
               <CgProfile className="mb-1 mx-2" />
               Profile
             </Dropdown.Item>
-            <Dropdown.Item>
+            <Dropdown.Item as={Link} to="orders">
               <LuBaggageClaim className="mb-1 mx-2" />
               Orders
             </Dropdown.Item>
